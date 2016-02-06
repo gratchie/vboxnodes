@@ -10,7 +10,7 @@ printUsage() {
   echo "Ex: vboxnodes-cent7.sh linux0101"
 }
 
-ISO="/Users/gracie/ISO/CentOS-7-x86_64-DVD-1503-01.iso"
+ISO="/home/gracie/iso/CentOS-7-x86_64-DVD-1511.iso"
 
 [[ -n "$1" ]] || printUsage
 
@@ -20,7 +20,7 @@ for NAME in $1 ; do
   cd ~
   VBoxManage createvm --name $NAME --register --ostype RedHat_64
   VBoxManage createhd --filename $NAME.vdi --size 8000
-  VBoxManage modifyvm $NAME --memory 512 --acpi on --boot1 dvd --boot2 disk \
+  VBoxManage modifyvm $NAME --memory 2048 --acpi on --boot1 dvd --boot2 disk \
              --nic1 hostonly --hostonlyadapter1 "vboxnet0"
   VBoxManage storagectl $NAME --name "SATA Controller" --add sata --portcount 1
   VBoxManage storageattach $NAME --storagectl "SATA Controller" \
